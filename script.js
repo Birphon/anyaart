@@ -1,3 +1,48 @@
+// Age Verification Handler
+function handleAgeVerification() {
+	const modal = document.getElementById("ageVerificationModal");
+	const body = document.body;
+	const hasVerified = localStorage.getItem("ageVerified");
+
+	function showModal() {
+		modal.style.display = "block";
+		body.classList.add("modal-open");
+	}
+
+	function hideModal() {
+		modal.style.display = "none";
+		body.classList.remove("modal-open");
+	}
+
+	function exitSite() {
+		window.location.href = "https://google.com";
+	}
+
+	function enterSite() {
+		localStorage.setItem("ageVerified", "true");
+		hideModal();
+	}
+
+	// Set up event listeners
+	document.getElementById("exitSite").addEventListener("click", exitSite);
+	document.getElementById("enterSite").addEventListener("click", enterSite);
+
+	// Prevent closing modal by clicking outside
+	modal.addEventListener("click", (e) => {
+		if (e.target === modal) {
+			e.preventDefault();
+		}
+	});
+
+	// Show modal if user hasn't verified age
+	if (!hasVerified) {
+		showModal();
+	}
+}
+
+// Run age verification before any other scripts
+document.addEventListener("DOMContentLoaded", handleAgeVerification);
+
 // Theme handling
 function setTheme(isDark) {
 	document.documentElement.classList.toggle("dark-mode", isDark);

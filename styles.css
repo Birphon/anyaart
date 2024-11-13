@@ -184,6 +184,99 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Modal Base Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--surface-dark);
+    color: var(--text-primary-dark);
+    margin: 15% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Warning Content Styles */
+.warning-content {
+    margin: 1.5rem 0;
+}
+
+.warning-content p {
+    margin-bottom: 1rem;
+}
+
+.warning-content p:first-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff9800;
+}
+
+.warning-content ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+.warning-content li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.warning-content li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #ff9800;
+}
+
+/* Button Styles */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.warning-btn {
+    flex: 1;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.exit-btn {
+    background-color: #424242;
+    color: #ffffff;
+}
+
+.exit-btn:hover {
+    background-color: #616161;
+}
+
+.enter-btn {
+    background-color: #ff9800;
+    color: #000000;
+}
+
+.enter-btn:hover {
+    background-color: #ffa726;
+}
+
 /* Mobile optimization */
 @media (max-width: 600px) {
     body {
@@ -206,4 +299,21 @@ footer a:hover {
     #comicContainer {
         padding: 10px;
     }
+
+    .modal-content {
+        margin: 10% auto;
+        padding: 1.5rem;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+
+    .warning-btn {
+        width: 100%;
+    }
+}
+
+body.modal-open {
+    overflow: hidden;
 }
