@@ -1,0 +1,209 @@
+:root {
+    /* Light theme variables */
+    --background-light: #fafafa;
+    --surface-light: #ffffff;
+    --text-primary-light: #212121;
+    --text-secondary-light: #757575;
+    --button-bg-light: #e0e0e0;
+    --button-text-light: #212121;
+    --button-hover-light: #bdbdbd;
+
+    /* Dark theme variables - using Material Design greys */
+    --background-dark: #303030;
+    --surface-dark: #424242;
+    --text-primary-dark: #ffffff;
+    --text-secondary-dark: #bdbdbd;
+    --button-bg-dark: #616161;
+    --button-text-dark: #ffffff;
+    --button-hover-dark: #757575;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-light);
+    color: var(--text-primary-light);
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+}
+
+/* Dark mode styles */
+html.dark-mode body {
+    background-color: var(--background-dark);
+    color: var(--text-primary-dark);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-primary-light);
+}
+
+html.dark-mode .theme-icon {
+    fill: var(--text-primary-dark);
+}
+
+#moonIcon {
+    display: none;
+}
+
+html.dark-mode #sunIcon {
+    display: none;
+}
+
+html.dark-mode #moonIcon {
+    display: block;
+}
+
+nav {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+html.dark-mode button {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+}
+
+button:hover {
+    background-color: var(--button-hover-light);
+}
+
+html.dark-mode button:hover {
+    background-color: var(--button-hover-dark);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#pageNumber {
+    padding: 8px 16px;
+    background-color: var(--surface-light);
+    color: var(--text-primary-light);
+    border-radius: 4px;
+}
+
+html.dark-mode #pageNumber {
+    background-color: var(--surface-dark);
+    color: var(--text-primary-dark);
+}
+
+#comicContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--surface-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+html.dark-mode #comicContainer {
+    background-color: var(--surface-dark);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#comicImage {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 20px;
+    color: var(--text-secondary-light);
+}
+
+html.dark-mode footer {
+    color: var(--text-secondary-dark);
+}
+
+footer a {
+    color: var(--text-primary-light);
+    text-decoration: none;
+}
+
+html.dark-mode footer a {
+    color: var(--text-primary-dark);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        gap: 10px;
+    }
+
+    nav {
+        gap: 5px;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    #comicContainer {
+        padding: 10px;
+    }
+}

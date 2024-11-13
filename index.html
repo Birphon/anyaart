@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Specter of Love</title>
+    <link rel="icon" type="image/x-icon" href="A-Specter-of-Love-Thumbnail-Tapas.jpg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>A Specter of Love</h1>
+        <button id="themeToggle" aria-label="Toggle dark mode">
+            <svg id="sunIcon" class="theme-icon" viewBox="0 0 24 24" width="24" height="24">
+                <path
+                    d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z" />
+            </svg>
+            <svg id="moonIcon" class="theme-icon" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" />
+            </svg>
+        </button>
+    </header>
+
+    <main>
+        <div id="comicContainer">
+            <img id="comicImage" src="" alt="Comic page">
+        </div>
+    </main>
+    <br>
+    <section>
+        <nav>
+            <button id="firstPage">First</button>
+            <button id="prevPage">Previous</button>
+            <span id="pageNumber">Page 1 of 1</span>
+            <button id="nextPage">Next</button>
+            <button id="lastPage">Latest</button>
+        </nav>
+    </section>
+
+    <footer>
+        <p><a href="https://x.com/Anya_Art2" target="_blank">Twitter</a> || <a href="https://www.patreon.com/AnyaArt"
+                target="_blank">Patreon</a></p>
+        <p>© 2024 Anya_Art2.</p>
+    </footer>
+
+    <script src="comic-data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

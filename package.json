@@ -1,0 +1,8 @@
+{
+	"name": "comic-website",
+	"version": "1.0.0",
+	"description": "A Specter of Love - Comic Website",
+	"scripts": {
+		"generate": "node generate-comic-data.js"
+	}
+}
