@@ -62,15 +62,6 @@ This project's code is available under the MIT License. However, all artwork and
 - All artwork © 2024 [Anya_Art2](https://x.com/Anya_Art2)
 - Website implementation by [Birphon](https://www.github.com/birphon)
 
-## Contributing
-
-While this is a fan project, if you notice any technical issues or have suggestions for improving the viewer experience, feel free to:
-1. Create an issue
-2. Submit a pull request
-3. Contact the repository maintainer
-
-Please note that any contributions must respect the original artist's work and rights.
-
 ---
 
 *This project is not affiliated with or endorsed by the original artist. It is a fan-made project created out of appreciation for the comic.*
