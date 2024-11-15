@@ -1,5 +1,7 @@
 # A Specter of Love - Comic Viewer
 
+# WARNING - The comic that this artist has made is R18. Please keep this in mind!
+
 This is a fan-made website project created to display the webcomic "A Specter of Love" in an easy-to-read format. The artist, Anya Art, had posted a "SFW" version onto Tapas however this has not been updated since August, however, their Twitter has been more active with NSFW version of the comic but due to Twitter's "Newest First" for their posts, it makes reading comic's difficult to read so this website has been made as a placeholder, in order to give to the artist as a means of webhosting themselves. This project can and will be taken down at their request.
 
 ## ⚠️ Important Notice
