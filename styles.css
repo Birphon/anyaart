@@ -277,6 +277,85 @@ footer a:hover {
     background-color: #ffa726;
 }
 
+
+/* Comic wrapper for Patreon overlay positioning */
+.comic-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Blur effect for Patreon content */
+.patreon-blur {
+    filter: blur(10px) !important;
+    pointer-events: none !important;
+    user-select: none;
+    transition: filter 0.3s ease;
+}
+
+/* Patreon overlay container */
+.patreon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    z-index: 10;
+    border-radius: 8px;
+}
+
+/* Patreon message styling */
+.patreon-message {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    max-width: 80%;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Patreon button styling */
+.patreon-button {
+    background-color: #FF424D;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.patreon-message span {
+    display: block;
+}
+
+.patreon-message .unlock-text {
+    font-size: 1rem;
+    color: #bdbdbd;
+    font-style: italic;
+}
+
+.patreon-button:hover {
+    background-color: #FF666E;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 /* Mobile optimization */
 @media (max-width: 600px) {
     body {
@@ -311,6 +390,20 @@ footer a:hover {
 
     .warning-btn {
         width: 100%;
+    }
+
+    .patreon-message {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .patreon-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .patreon-overlay {
+        padding: 1rem;
     }
 }
 

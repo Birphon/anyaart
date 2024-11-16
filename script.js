@@ -40,9 +40,6 @@ function handleAgeVerification() {
 	}
 }
 
-// Run age verification before any other scripts
-document.addEventListener("DOMContentLoaded", handleAgeVerification);
-
 // Theme handling
 function setTheme(isDark) {
 	document.documentElement.classList.toggle("dark-mode", isDark);
@@ -62,18 +59,63 @@ document.getElementById("themeToggle").addEventListener("click", () => {
 	localStorage.setItem("darkMode", isDark);
 });
 
-// Comic navigation code (keeping your existing code)
+// Comic navigation code
 let currentPage = 0;
 
 function updatePage() {
 	const page = comicPages[currentPage];
+	const comicContainer = document.getElementById("comicContainer");
 	const comicImage = document.getElementById("comicImage");
 	const pageNumber = document.getElementById("pageNumber");
 
+	// Update basic page info
 	comicImage.src = page.image;
 	comicImage.alt = page.title;
 	pageNumber.textContent = `Page ${page.id} of ${comicPages.length}`;
 
+	// Clear any existing overlay
+	const existingOverlay = document.querySelector(".patreon-overlay");
+	if (existingOverlay) {
+		existingOverlay.remove();
+	}
+
+	// Handle Patreon content
+	if (page.isPatreonOnly) {
+		// Add blur to image
+		comicImage.classList.add("patreon-blur");
+
+		// Create overlay
+		const overlay = document.createElement("div");
+		overlay.className = "patreon-overlay";
+
+		// Add message
+		const message = document.createElement("p");
+		message.className = "patreon-message";
+		message.innerHTML = `
+    <span>Patreon Users can see this content first</span>
+    <span class="unlock-text">Free unlock coming soon</span>
+`;
+
+		// Add Patreon button
+		const button = document.createElement("a");
+		button.href = patreonConfig.url || "https://www.patreon.com/AnyaArt";
+		button.className = "patreon-button";
+		button.textContent = "View on Patreon";
+		button.target = "_blank";
+		button.rel = "noopener noreferrer";
+
+		// Assemble overlay
+		overlay.appendChild(message);
+		overlay.appendChild(button);
+
+		// Add overlay to wrapper
+		document.getElementById("comicWrapper").appendChild(overlay);
+	} else {
+		// Remove blur if it was previously added
+		comicImage.classList.remove("patreon-blur");
+	}
+
+	// Update navigation states
 	document.getElementById("firstPage").disabled = currentPage === 0;
 	document.getElementById("prevPage").disabled = currentPage === 0;
 	document.getElementById("nextPage").disabled =
@@ -85,6 +127,7 @@ function updatePage() {
 	history.pushState({ page: currentPage }, "", newUrl);
 }
 
+// Navigation event listeners
 document.getElementById("firstPage").addEventListener("click", () => {
 	currentPage = 0;
 	updatePage();
@@ -109,6 +152,7 @@ document.getElementById("lastPage").addEventListener("click", () => {
 	updatePage();
 });
 
+// Keyboard navigation
 document.addEventListener("keydown", (e) => {
 	if (e.key === "ArrowLeft" && currentPage > 0) {
 		currentPage--;
@@ -119,7 +163,20 @@ document.addEventListener("keydown", (e) => {
 	}
 });
 
+// Preload images
+function preloadImages() {
+	comicPages.forEach((page) => {
+		const img = new Image();
+		img.src = page.image;
+	});
+}
+
+// Initial page load
 window.addEventListener("load", () => {
+	// Run age verification first
+	handleAgeVerification();
+
+	// Check for page parameter in URL
 	const urlParams = new URLSearchParams(window.location.search);
 	const pageParam = parseInt(urlParams.get("page"));
 
@@ -128,8 +185,10 @@ window.addEventListener("load", () => {
 	}
 
 	updatePage();
+	preloadImages(); // Start preloading after showing the first page
 });
 
+// Handle browser back/forward buttons
 window.addEventListener("popstate", (e) => {
 	if (e.state && typeof e.state.page !== "undefined") {
 		currentPage = e.state.page;

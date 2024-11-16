@@ -2,7 +2,6 @@ const fs = require("fs").promises;
 const path = require("path");
 
 async function generateComicData() {
-	// Go up one directory level from scripts to find the root directory
 	const rootDir = path.join(__dirname, "..");
 	const imagesDir = path.join(rootDir, "images");
 	const outputFile = path.join(rootDir, "comic-data.js");
@@ -51,17 +50,30 @@ async function generateComicData() {
 		// Sort by creation date
 		fileData.sort((a, b) => a.created - b.created);
 
-		// Create the comic pages array
-		const comicPages = fileData.map((file, index) => ({
-			id: index + 1,
-			title: `Page ${index + 1}`,
-			image: file.path,
-			date: file.created.toISOString().split("T")[0],
-		}));
+		// Create the comic pages array with Patreon flags
+		const comicPages = fileData.map((file, index) => {
+			const totalPages = fileData.length;
+			const isPatreonOnly = index >= totalPages - 5; // Last 5 pages are Patreon-only
+
+			return {
+				id: index + 1,
+				title: `Page ${index + 1}`,
+				image: file.path,
+				date: file.created.toISOString().split("T")[0],
+				isPatreonOnly: isPatreonOnly,
+			};
+		});
 
 		// Generate the JavaScript content
 		const jsContent = `// Auto-generated on ${new Date().toISOString()}
-const comicPages = ${JSON.stringify(comicPages, null, 4)};`;
+const comicPages = ${JSON.stringify(comicPages, null, 4)};
+
+// Patreon configuration
+const patreonConfig = {
+    url: "https://www.patreon.com/AnyaArt",
+    message: "Patreon Users can see this content first - Free unlock coming soon",
+    blurAmount: "10px"
+};`;
 
 		// Write to comic-data.js
 		await fs.writeFile(outputFile, jsContent, "utf8");
@@ -69,9 +81,19 @@ const comicPages = ${JSON.stringify(comicPages, null, 4)};`;
 		console.log(
 			`✓ Successfully generated comic-data.js with ${comicPages.length} pages`
 		);
+		console.log(
+			`✓ Last ${Math.min(
+				5,
+				comicPages.length
+			)} pages marked as Patreon-only`
+		);
 		console.log("\nPage summary:");
 		comicPages.forEach((page) => {
-			console.log(`- ${page.title}: ${page.image} (${page.date})`);
+			console.log(
+				`- ${page.title}: ${page.image} (${page.date})${
+					page.isPatreonOnly ? " [Patreon]" : ""
+				}`
+			);
 		});
 	} catch (error) {
 		console.error("Error generating comic data:", error);
